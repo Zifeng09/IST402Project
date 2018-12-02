@@ -11,8 +11,8 @@ App = {
       for (i = 0; i < data.length; i ++) {
         petTemplate.find('.panel-title').text(data[i].name);
         petTemplate.find('img').attr('src', data[i].picture);
-        petTemplate.find('.pet-breed').text(data[i].breed);
-        petTemplate.find('.pet-age').text(data[i].age);
+        //petTemplate.find('.pet-breed').text(data[i].breed);
+        //petTemplate.find('.pet-age').text(data[i].age);
         petTemplate.find('.pet-location').text(data[i].location);
         petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
 
@@ -53,10 +53,10 @@ web3 = new Web3(App.web3Provider);
       // Get the necessary contract artifact file and instantiate it with truffle-contract
       var AdoptionArtifact = data;
       App.contracts.Adoption = TruffleContract(AdoptionArtifact);
-    
+
       // Set the provider for our contract
       App.contracts.Adoption.setProvider(App.web3Provider);
-    
+
       // Use our contract to retrieve and mark the adopted pets
       return App.markAdopted();
     });
@@ -112,11 +112,11 @@ web3.eth.getAccounts(function(error, accounts) {
     console.log(err.message);
   });
 });
-  
+
   web3.eth.sendTransaction({
     from: web3.eth.getAccounts[0],
     to: "0xF0a0bA2b053EfD17872015f11396cA7B9609732C",
-    value: web3.toWei("10","ether")
+    value: web3.toWei((document.getElementById("amount").value.toString()),"ether")
   }, function(err, transactionHash) {
     if(!err)
       console.log(transactionHash);
