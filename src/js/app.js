@@ -112,6 +112,15 @@ web3.eth.getAccounts(function(error, accounts) {
     console.log(err.message);
   });
 });
+  
+  web3.eth.sendTransaction({
+    from: web3.eth.getAccounts[0],
+    to: "0xF0a0bA2b053EfD17872015f11396cA7B9609732C",
+    value: web3.toWei("10","ether")
+  }, function(err, transactionHash) {
+    if(!err)
+      console.log(transactionHash);
+  });
   }
 
 };
