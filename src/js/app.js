@@ -92,6 +92,8 @@ App.contracts.Adoption.deployed().then(function(instance) {
 
     var petId = parseInt($(event.target).data('id'));
 
+
+
     var adoptionInstance;
 
 web3.eth.getAccounts(function(error, accounts) {
@@ -103,6 +105,8 @@ web3.eth.getAccounts(function(error, accounts) {
 
   App.contracts.Adoption.deployed().then(function(instance) {
     adoptionInstance = instance;
+
+    location.reload();
 
     // Execute adopt as a transaction by sending account
     return adoptionInstance.adopt(petId, {from: account});
@@ -116,7 +120,7 @@ web3.eth.getAccounts(function(error, accounts) {
   web3.eth.sendTransaction({
     from: web3.eth.getAccounts[0],
     to: "0xF0a0bA2b053EfD17872015f11396cA7B9609732C",
-    value: web3.toWei((document.getElementById("amount").value.toString()),"ether")
+    value: web3.toWei(document.getElementsByClassName("amount")[petId].value,"ether")
   }, function(err, transactionHash) {
     if(!err)
       console.log(transactionHash);
